@@ -1,6 +1,6 @@
 package com.example.dashboard.service;
 
-import com.example.dashboard.model.Employee;
+import com.example.dashboard.model.Dashboard;
 import com.example.dashboard.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,19 +17,19 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public List<Employee> getAllEmployees() {
+    public List<Dashboard> getAllEmployees() {
         return employeeRepository.findAll();
     }
 
-    public Employee getEmployeeById(Long id) {
+    public Dashboard getEmployeeById(Long id) {
         return employeeRepository.findById(id).orElse(null);
     }
 
-    public Employee createEmployee(Employee employee) {
+    public Dashboard createEmployee(Dashboard employee) {
         return employeeRepository.save(employee);
     }
 
-    public Employee updateEmployee(Long id, Employee updatedEmployee) {
+    public Dashboard updateEmployee(Long id, Dashboard updatedEmployee) {
         return employeeRepository.findById(id)
                 .map(employee -> {
                     employee.setName(updatedEmployee.getName());
