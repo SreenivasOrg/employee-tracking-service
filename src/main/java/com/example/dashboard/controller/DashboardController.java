@@ -1,6 +1,6 @@
 package com.example.dashboard.controller;
 
-import com.example.dashboard.model.Employee;
+import com.example.dashboard.model.Dashboard;
 import com.example.dashboard.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,22 +10,22 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/employees")
-public class EmployeeController {
+public class DashboardController {
 
     private final EmployeeService employeeService;
 
-    public EmployeeController(EmployeeService employeeService) {
+    public DashboardController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
     @GetMapping
-    public List<Employee> getAllEmployees() {
+    public List<Dashboard> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        Employee employee = employeeService.getEmployeeById(id);
+    public ResponseEntity<Dashboard> getEmployeeById(@PathVariable Long id) {
+        Dashboard employee = employeeService.getEmployeeById(id);
         if (employee != null) {
             return ResponseEntity.ok(employee);
         } else {
@@ -34,12 +34,12 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee createEmployee(@RequestBody Employee employee) {
+    public Dashboard createEmployee(@RequestBody Dashboard employee) {
         return employeeService.createEmployee(employee);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee updatedEmployee) {
+    public ResponseEntity<Dashboard> updateEmployee(@PathVariable Long id, @RequestBody Dashboard updatedEmployee) {
         try {
             return ResponseEntity.ok(employeeService.updateEmployee(id, updatedEmployee));
         } catch (RuntimeException e) {
